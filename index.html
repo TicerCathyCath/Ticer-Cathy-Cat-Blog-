@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ticer Cathy Cat Blog - Teaching, Sharing, Creating">
+<title>Ticer Cathy Cat Blog</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:"Trebuchet MS",Arial,sans-serif;color:#40334d;background:#fff8fc;overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.background-shape{position:fixed;z-index:-2;border-radius:50%;filter:blur(2px);opacity:.45}
+.shape-one{width:320px;height:320px;top:-120px;left:-100px;background:#ffe2ef}
+.shape-two{width:280px;height:280px;right:-110px;bottom:5%;background:#e8e2ff}
+.navbar{width:100%;min-height:76px;padding:15px 7%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;box-shadow:0 4px 20px rgba(70,50,75,.05)}
+.brand{display:flex;align-items:center;gap:10px}.brand-icon{width:45px;height:45px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:#fff0f7;font-size:25px}.brand-text{display:flex;flex-direction:column}.brand-text strong{font-size:15px}.brand-text span{color:#b1789d;font-size:12px}
+.menu-button{border:none;background:#fff0f7;color:#6e5268;width:45px;height:45px;border-radius:14px;font-size:24px}
+.mobile-menu{display:none;position:fixed;top:82px;right:7%;width:180px;background:white;border-radius:18px;padding:10px;box-shadow:0 15px 35px rgba(60,40,70,.15);z-index:30}.mobile-menu.show{display:flex;flex-direction:column}.mobile-menu button{border:none;background:transparent;padding:13px;text-align:left;color:#604d61;border-radius:12px}.mobile-menu button:hover{background:#fff0f7}
+.page{display:none}.page.active{display:block}
+.hero{max-width:1100px;margin:auto;min-height:610px;padding:75px 7% 60px;display:flex;align-items:center;justify-content:center;gap:80px}
+.cat-container{width:330px;height:330px;position:relative;display:flex;align-items:center;justify-content:center}.cat-glow{position:absolute;width:285px;height:285px;border-radius:50%;background:#f7d9ea;filter:blur(24px);opacity:.65}.cat-circle{width:245px;height:245px;border-radius:50%;background:#fff0f7;border:9px solid white;box-shadow:0 20px 45px rgba(80,50,75,.12);display:flex;align-items:center;justify-content:center;position:relative}.cat-face{width:155px;height:125px;border-radius:45% 45% 48% 48%;background:#f3c7df;position:relative}.cat-ear{position:absolute;top:-33px;width:55px;height:55px;background:#f3c7df;transform:rotate(45deg);border-radius:12px 7px 5px 7px}.left-ear{left:7px}.right-ear{right:7px}.cat-eye{position:absolute;top:47px;width:13px;height:17px;background:#49384a;border-radius:50%}.left-eye{left:43px}.right-eye{right:43px}.cat-nose{position:absolute;left:50%;top:69px;transform:translateX(-50%);width:13px;height:9px;background:#a96087;border-radius:50%}.cat-mouth{position:absolute;left:50%;top:77px;transform:translateX(-50%);font-size:20px;color:#70475f}.cat-whisker{position:absolute;width:55px;height:1px;background:#9a6e87}.whisker-one{left:-45px;top:69px;transform:rotate(8deg)}.whisker-two{left:-45px;top:84px;transform:rotate(-5deg)}.whisker-three{right:-45px;top:77px;transform:rotate(5deg)}
+.floating-star,.floating-heart{position:absolute;color:#bf82a8;font-size:28px;animation:float 3s ease-in-out infinite}.star-one{top:20px;right:20px}.star-two{bottom:25px;left:25px;animation-delay:1s}.floating-heart{right:0;bottom:65px;font-size:35px;animation-delay:.5s}@keyframes float{50%{transform:translateY(-9px) rotate(5deg)}}
+.hero-text{max-width:520px}.welcome{color:#b1789d;letter-spacing:3px;font-size:12px;font-weight:bold;margin-bottom:15px}.hero h1{font-size:clamp(42px,6vw,70px);line-height:.98;letter-spacing:-2px}.hero h1 span{display:block;color:#bd78a1}.tagline{margin-top:20px;color:#80657a;font-size:17px}.intro{max-width:450px;margin-top:18px;color:#8c7b8d;line-height:1.7}.explore-button,.primary-button{margin-top:28px;border:none;padding:14px 22px;border-radius:18px;background:#5b475c;color:white;display:inline-flex;align-items:center;justify-content:center;gap:16px;box-shadow:0 12px 25px rgba(70,50,75,.18);transition:.25s}.explore-button:hover,.primary-button:hover{transform:translateY(-3px)}.arrow{font-size:20px}
+.content-section{max-width:1100px;margin:auto;padding:55px 7% 90px}.section-heading p{color:#b1789d;letter-spacing:3px;font-size:11px;font-weight:bold}.section-heading h2{font-size:38px;margin-top:5px}.section-heading span{display:block;margin-top:8px;color:#9a899b;font-size:14px}.card-grid{margin-top:35px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.content-card{min-height:145px;border:none;border-radius:24px;background:white;padding:22px;display:flex;align-items:center;gap:17px;text-align:left;box-shadow:0 12px 32px rgba(70,50,75,.07);transition:.3s}.content-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(70,50,75,.12)}.empty-icon{width:60px;height:60px;flex-shrink:0;border-radius:18px;background:#fff0f7;display:flex;align-items:center;justify-content:center;font-size:25px;color:#c078a2}.card-title{flex:1}.card-title h3{font-size:19px;margin-bottom:5px}.card-title p{color:#918291;font-size:13px}.card-arrow{font-size:22px;color:#c078a2}
+footer{text-align:center;padding:45px 20px 30px;background:#f9edf5}.footer-cat{font-size:25px}footer h3{margin-top:10px}footer p,footer small{color:#8e788d;font-size:13px}.footer-line{width:70px;height:2px;background:#d4a7c2;margin:18px auto}
+.opr-page,.form-page,.preview-page{max-width:900px;min-height:650px;margin:auto;padding:45px 25px 80px}.opr-header,.form-header,.preview-toolbar{display:flex;align-items:center;gap:18px}.back-button{width:48px;height:48px;border:none;border-radius:15px;background:#fff0f7;color:#6c5267;font-size:25px}.small-title{color:#b1789d;letter-spacing:2px;font-size:10px;font-weight:bold}.opr-header h2,.form-header h2,.preview-toolbar h2{font-size:34px}.opr-subtitle{margin:8px 0 0 66px;color:#9b8395;font-size:14px}.opr-options{display:flex;flex-direction:column;gap:16px;margin-top:35px}.opr-option{width:100%;min-height:105px;padding:20px 25px;border:none;border-radius:22px;background:white;display:flex;align-items:center;gap:18px;text-align:left;box-shadow:0 10px 30px rgba(70,50,75,.07);transition:.3s}.opr-option:hover{transform:translateY(-4px);box-shadow:0 16px 35px rgba(70,50,75,.12)}.opr-option-icon{width:58px;height:58px;flex-shrink:0;border-radius:18px;background:#fff0f7;display:flex;align-items:center;justify-content:center;font-size:25px}.opr-option h3{color:#4a3b50;font-size:17px;margin-bottom:6px}.opr-option p{color:#8b7f8f;font-size:13px}.opr-option>span{margin-left:auto;color:#c078a2;font-size:22px}
+.form-card{margin-top:30px;background:white;border-radius:28px;padding:28px;box-shadow:0 15px 40px rgba(70,50,75,.08)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}label{display:flex;flex-direction:column;gap:8px;color:#5d4b5e;font-size:13px;font-weight:bold;margin-bottom:20px}input,textarea{width:100%;border:1px solid #eadce7;border-radius:15px;padding:13px 15px;background:#fffafd;color:#4c3e4d;outline:none}input:focus,textarea:focus{border-color:#c995b5;box-shadow:0 0 0 3px #fff0f7}textarea{resize:vertical;line-height:1.5}.photo-section{margin-top:8px}.photo-section h3{font-size:16px}.photo-section p{font-size:12px;color:#958697;margin:5px 0 15px}.photo-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.photo-upload{margin:0;border:1.5px dashed #d9bfd0;border-radius:15px;padding:15px;text-align:center;background:#fffafd;color:#8a6680}.photo-upload input{display:none}.form-card .primary-button{width:100%;margin-top:8px}
+.preview-page{max-width:1000px}.preview-toolbar{margin-bottom:25px}.opr-preview{background:white;border-radius:26px;padding:32px;box-shadow:0 18px 50px rgba(70,50,75,.12);border:1px solid #eee0e9}.preview-top{display:flex;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:2px solid #f3e3ed}.preview-brand{font-size:11px;letter-spacing:2px;color:#b1789d;font-weight:bold}.preview-top h1{font-size:32px;margin-top:8px}.preview-top p{color:#8d7d8f;font-size:13px}.preview-badge{background:#fff0f7;border-radius:15px;padding:10px 14px;height:max-content;color:#a76489;font-weight:bold}.preview-info{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.preview-info>div{background:#fff8fc;border-radius:15px;padding:13px}.preview-info span{display:block;font-size:9px;letter-spacing:1px;color:#aa8b9f;margin-bottom:5px}.preview-info strong{font-size:13px;word-break:break-word}.preview-section{margin-top:18px;padding:18px;background:#fff8fc;border-radius:18px}.preview-section h3{font-size:14px;margin-bottom:9px}.preview-section p{font-size:13px;color:#756579;line-height:1.65;white-space:pre-wrap}.preview-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.preview-photo{height:145px;border-radius:18px;background:#faf0f6;border:1px dashed #d9bfd0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.preview-photo img{width:100%;height:100%;object-fit:cover;display:none}.preview-photo span{font-size:11px;color:#a08499}.preview-footer{text-align:center;color:#a48598;font-size:11px;margin-top:25px}.preview-actions{display:flex;justify-content:center;gap:12px;margin-top:20px}.secondary-button{border:1px solid #d8c2d0;background:white;color:#665267;border-radius:16px;padding:13px 20px}
+.message-box{display:none;position:fixed;inset:0;z-index:100;background:rgba(50,35,55,.35);align-items:center;justify-content:center;padding:20px}.message-box.show{display:flex}.message-content{width:min(390px,100%);background:white;border-radius:28px;padding:35px 25px;text-align:center;position:relative;box-shadow:0 25px 60px rgba(50,35,55,.2)}.close-message{position:absolute;top:12px;right:16px;border:none;background:transparent;font-size:27px;color:#806c80}.message-icon{font-size:42px;margin-bottom:12px}.message-content h3{margin-bottom:8px}.message-content p{color:#8d7e8f;font-size:14px;line-height:1.6}
+@media(max-width:700px){.hero{min-height:auto;padding-top:55px;flex-direction:column;gap:25px;text-align:center}.cat-container{width:270px;height:270px}.cat-circle{width:210px;height:210px}.cat-glow{width:245px;height:245px}.hero-text{max-width:100%}.intro{margin-left:auto;margin-right:auto}.card-grid{grid-template-columns:1fr}.section-heading h2{font-size:32px}.form-grid,.photo-inputs,.preview-info{grid-template-columns:1fr}.preview-photos{grid-template-columns:1fr 1fr}.opr-preview{padding:22px}.preview-top h1{font-size:25px}.preview-actions{flex-direction:column}.preview-actions button{width:100%}}
+@media(max-width:430px){.navbar{padding-left:18px;padding-right:18px}.mobile-menu{right:18px}.hero{padding-left:20px;padding-right:20px}.hero h1{font-size:43px}.content-section{padding-left:20px;padding-right:20px}.opr-page,.form-page,.preview-page{padding:30px 18px 60px}.form-card{padding:20px}.opr-option{padding:17px}.opr-option-icon{width:50px;height:50px;font-size:22px}}
+
+/* ==========================================
+   CUTE TEACHER + CAT DECORATION V3
+========================================== */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+    background:
+      radial-gradient(circle at 15% 25%, rgba(255,205,228,.28) 0 5px, transparent 6px),
+      radial-gradient(circle at 85% 35%, rgba(211,199,255,.25) 0 6px, transparent 7px),
+      radial-gradient(circle at 75% 80%, rgba(255,224,190,.22) 0 5px, transparent 6px);
+    background-size:120px 120px,150px 150px,180px 180px;
+}
+
+.decor{position:fixed;pointer-events:none;z-index:-1}
+.decor-dot{width:9px;height:9px;border-radius:50%;background:#efc4d9;opacity:.7;animation:decorFloat 5s ease-in-out infinite}
+.dot-a{top:23%;left:4%}.dot-b{top:67%;right:5%;animation-delay:1.5s}.dot-c{bottom:10%;left:12%;animation-delay:3s}
+.decor-sparkle{color:#c995b5;font-size:24px;animation:sparkle 3.5s ease-in-out infinite}
+.sparkle-a{top:18%;right:7%}.sparkle-b{top:52%;left:3%;animation-delay:1.2s}
+.decor-flower{color:#d8a6c0;font-size:25px;opacity:.65;animation:decorFloat 6s ease-in-out infinite}
+.flower-a{top:42%;right:3%}.flower-b{bottom:18%;right:13%;animation-delay:2s}
+.decor-cloud{color:#d9cde6;font-size:42px;opacity:.42;animation:cloudMove 8s ease-in-out infinite}
+.cloud-a{top:13%;left:30%}.cloud-b{bottom:25%;right:28%;animation-delay:3s}
+
+@keyframes decorFloat{50%{transform:translateY(-13px) rotate(8deg)}}
+@keyframes sparkle{0%,100%{opacity:.35;transform:scale(.9) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(15deg)}}
+@keyframes cloudMove{50%{transform:translateX(18px)}}
+
+.brand-icon,.empty-icon,.opr-option-icon{
+    position:relative;
+    overflow:visible;
+}
+.brand-icon::after{
+    content:"✦";
+    position:absolute;
+    right:-7px;
+    top:-8px;
+    font-size:12px;
+    color:#c78eae;
+    animation:sparkle 2.8s infinite;
+}
+
+.hero-text h1{
+    text-shadow:0 5px 18px rgba(190,120,160,.08);
+}
+.welcome::before{
+    content:"♡ ";
+    letter-spacing:0;
+}
+.section-heading{
+    position:relative;
+}
+.decorated-heading::after{
+    content:"✿  ✧  ♡";
+    display:block;
+    margin-top:10px;
+    color:#d29ab8;
+    font-size:17px;
+    letter-spacing:7px;
+}
+.content-card,.opr-option,.form-card,.opr-preview{
+    position:relative;
+    overflow:hidden;
+}
+.content-card::before,.opr-option::before,.form-card::before,.opr-preview::before{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#fff0f7;
+    right:-45px;
+    top:-45px;
+    opacity:.7;
+}
+.content-card::after{
+    content:"✦";
+    position:absolute;
+    right:20px;
+    top:15px;
+    color:#e0b2c9;
+    font-size:12px;
+}
+.opr-option-icon{
+    box-shadow:0 8px 18px rgba(190,120,160,.10);
+}
+.form-card{
+    border:1px solid rgba(221,190,210,.45);
+}
+.form-card::after{
+    content:"🐾";
+    position:absolute;
+    right:22px;
+    bottom:15px;
+    opacity:.13;
+    font-size:35px;
+}
+.opr-preview{
+    border:2px solid #f0dce8;
+    background:
+      linear-gradient(135deg,#fff 0%,#fffafd 60%,#fff2f8 100%);
+}
+.preview-top{
+    position:relative;
+}
+.preview-top::after{
+    content:"✿";
+    position:absolute;
+    right:5px;
+    bottom:12px;
+    color:#e0b4c9;
+    font-size:24px;
+}
+.preview-footer{
+    position:relative;
+}
+.preview-footer::before{
+    content:"♡";
+    margin-right:8px;
+    color:#c58cab;
+}
+.primary-button{
+    position:relative;
+    overflow:hidden;
+}
+.primary-button::after,.explore-button::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-80px;
+    width:40px;
+    height:100%;
+    background:rgba(255,255,255,.25);
+    transform:skewX(-20deg);
+    animation:buttonShine 4s infinite;
+}
+@keyframes buttonShine{
+    0%,65%{left:-80px}
+    85%,100%{left:120%}
+}
+@media(max-width:700px){
+    .decor-cloud{font-size:30px}
+    .decor-sparkle{font-size:18px}
+    .decor-flower{font-size:19px}
+}
+
+
+/* OPR SAYA + SAVE/EXPORT V4 */
+.saved-toolbar{display:flex;justify-content:flex-end;margin-top:20px}.saved-toolbar .primary-button{margin-top:0}.saved-opr-list{display:flex;flex-direction:column;gap:14px;margin-top:22px}.saved-opr-card{background:white;border:1px solid #f0dce8;border-radius:22px;padding:18px;box-shadow:0 10px 28px rgba(70,50,75,.07);display:flex;align-items:center;gap:15px}.saved-opr-icon{width:52px;height:52px;border-radius:16px;background:#fff0f7;display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0}.saved-opr-info{flex:1;min-width:0}.saved-opr-info h3{font-size:16px;margin-bottom:4px}.saved-opr-info p{font-size:12px;color:#8e7d8e;line-height:1.5}.saved-opr-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.saved-opr-actions button{border:1px solid #e3cfdd;background:#fffafd;color:#624f60;border-radius:12px;padding:8px 10px;font-size:11px}.saved-opr-actions .danger{color:#b75f7f}.empty-opr-state{text-align:center;background:rgba(255,255,255,.7);border:1px dashed #dec6d6;border-radius:24px;padding:40px 20px;margin-top:22px}.empty-opr-state>div{font-size:42px}.empty-opr-state h3{margin:8px 0 5px}.empty-opr-state p{color:#948495;font-size:13px}.saved-badge{display:inline-block;background:#fff0f7;color:#a66589;border-radius:10px;padding:4px 8px;font-size:10px;margin-top:6px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#4d3d50;color:white;padding:12px 17px;border-radius:14px;font-size:13px;box-shadow:0 10px 25px rgba(50,35,55,.2);z-index:150;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.saved-toolbar{justify-content:stretch}.saved-toolbar .primary-button{width:100%}.saved-opr-card{align-items:flex-start}.saved-opr-actions{width:100%;justify-content:flex-start}.saved-opr-actions button{flex:1;min-width:70px}}
+
+@media print{body{background:white!important}.navbar,.mobile-menu,footer,.decor,.background-shape,.preview-toolbar,.preview-actions,.message-box,.toast{display:none!important}.page{display:none!important}.preview-page{display:block!important;max-width:none!important;padding:0!important}.opr-preview{box-shadow:none!important;border:0!important;margin:0!important}.opr-preview:before{display:none!important}}
+</style>
+</head>
+<body>
+<div class="decor decor-dot dot-a"></div>
+<div class="decor decor-dot dot-b"></div>
+<div class="decor decor-dot dot-c"></div>
+<div class="decor decor-sparkle sparkle-a">✦</div>
+<div class="decor decor-sparkle sparkle-b">✧</div>
+<div class="decor decor-flower flower-a">✿</div>
+<div class="decor decor-flower flower-b">❀</div>
+<div class="decor decor-cloud cloud-a">☁</div>
+<div class="decor decor-cloud cloud-b">☁</div>
+
+<div class="background-shape shape-one"></div>
+<div class="background-shape shape-two"></div>
+
+<header class="navbar">
+    <div class="brand">
+        <div class="brand-icon">🐱</div>
+        <div class="brand-text">
+            <strong>Ticer Cathy Cat</strong>
+            <span>Blog</span>
+        </div>
+    </div>
+    <button class="menu-button" id="menuButton" aria-label="Buka menu">☰</button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+    <button onclick="goHome()">HOME</button>
+    <button onclick="showMessage()">ABOUT</button>
+    <button onclick="showMessage()">CONTACT</button>
+</nav>
+
+<!-- HOME -->
+<main id="homePage" class="page active">
+    <section class="hero">
+        <div class="cat-container">
+            <div class="cat-glow"></div>
+            <div class="cat-circle">
+                <div class="cat-face">
+                    <div class="cat-ear left-ear"></div>
+                    <div class="cat-ear right-ear"></div>
+                    <div class="cat-eye left-eye"></div>
+                    <div class="cat-eye right-eye"></div>
+                    <div class="cat-nose"></div>
+                    <div class="cat-mouth">ᴗ</div>
+                    <div class="cat-whisker whisker-one"></div>
+                    <div class="cat-whisker whisker-two"></div>
+                    <div class="cat-whisker whisker-three"></div>
+                </div>
+            </div>
+            <div class="floating-star star-one">✦</div>
+            <div class="floating-star star-two">✧</div>
+            <div class="floating-heart">♡</div>
+        </div>
+
+        <div class="hero-text">
+            <p class="welcome">WELCOME TO MY SPACE</p>
+            <h1>Ticer Cathy <span>Cat Blog</span></h1>
+            <p class="tagline">Teaching <b>•</b> Sharing <b>•</b> Creating</p>
+            <p class="intro">Ruang perkongsian bahan pendidikan, idea kreatif dan pelbagai sumber pembelajaran.</p>
+            <button class="explore-button" id="exploreButton">EXPLORE <span class="arrow">↓</span></button>
+        </div>
+    </section>
+
+    <section class="content-section" id="contentSection">
+        <div class="section-heading decorated-heading">
+            <p>EXPLORE</p>
+            <h2>My Space</h2>
+            <span>Pilihan kandungan akan ditambah kemudian.</span>
+        </div>
+
+        <div class="card-grid">
+            <button class="content-card" id="oprCard">
+                <div class="empty-icon">📝</div>
+                <div class="card-title"><h3>OPR</h3><p>One Page Report</p></div>
+                <div class="card-arrow">→</div>
+            </button>
+            <button class="content-card empty-card"><div class="empty-icon">+</div><div class="card-title"></div><div class="card-arrow">→</div></button>
+            <button class="content-card empty-card"><div class="empty-icon">+</div><div class="card-title"></div><div class="card-arrow">→</div></button>
+            <button class="content-card empty-card"><div class="empty-icon">+</div><div class="card-title"></div><div class="card-arrow">→</div></button>
+        </div>
+    </section>
+</main>
+
+<!-- OPR MENU -->
+<main id="oprPage" class="page opr-page">
+    <div class="opr-header">
+        <button id="oprBackButton" class="back-button">←</button>
+        <div><p class="small-title">TICER CATHY CAT BLOG</p><h2>OPR</h2></div>
+    </div>
+    <p class="opr-subtitle">One Page Report</p>
+
+    <section class="opr-options">
+        <button class="opr-option" id="createOprButton">
+            <div class="opr-option-icon">✏️</div>
+            <div><h3>Cipta OPR</h3><p>Hasilkan OPR baharu.</p></div><span>→</span>
+        </button>
+        <button class="opr-option" id="myOprButton">
+            <div class="opr-option-icon">📂</div>
+            <div><h3>OPR Saya</h3><p>Lihat OPR yang telah disimpan.</p></div><span>→</span>
+        </button>
+        <button class="opr-option" onclick="showMessage('Template OPR')">
+            <div class="opr-option-icon">🎨</div>
+            <div><h3>Template OPR</h3><p>Pilih reka bentuk OPR.</p></div><span>→</span>
+        </button>
+    </section>
+</main>
+
+<!-- OPR SAYA -->
+<main id="myOprPage" class="page opr-page">
+    <div class="opr-header">
+        <button id="myOprBackButton" class="back-button">←</button>
+        <div><p class="small-title">TICER CATHY CAT BLOG</p><h2>OPR Saya</h2></div>
+    </div>
+    <p class="opr-subtitle">OPR yang disimpan dalam telefon/peranti ini.</p>
+
+    <div class="saved-toolbar">
+        <button class="primary-button" id="newOprButton">＋ Cipta OPR Baharu</button>
+    </div>
+    <div id="savedOprList" class="saved-opr-list"></div>
+    <div id="emptyOprState" class="empty-opr-state">
+        <div>🐱</div>
+        <h3>Belum ada OPR</h3>
+        <p>OPR yang anda simpan akan muncul di sini.</p>
+    </div>
+</main>
+
+<!-- CIPTA OPR -->
+<main id="createOprPage" class="page form-page">
+    <div class="form-header">
+        <button class="back-button" id="formBackButton">←</button>
+        <div><p class="small-title">OPR • CIPTA</p><h2>Cipta OPR</h2></div>
+    </div>
+
+    <div class="form-card decorated-card">
+        <div class="form-grid">
+            <label>Matapelajaran
+                <input id="subjectInput" type="text" placeholder="Contoh: Bahasa Melayu">
+            </label>
+            <label>Kelas
+                <input id="classInput" type="text" placeholder="Contoh: 4 St Peter">
+            </label>
+            <label>Tarikh
+                <input id="dateInput" type="date">
+            </label>
+            <label>Masa
+                <input id="timeInput" type="text" placeholder="Contoh: 10:20 - 11:20">
+            </label>
+        </div>
+
+        <label>Aktiviti PdPr
+            <textarea id="activityInput" rows="6" placeholder="Masukkan aktiviti PdPr..."></textarea>
+        </label>
+
+        <label>Refleksi PdPr
+            <textarea id="reflectionInput" rows="5" placeholder="Masukkan refleksi PdPr..."></textarea>
+        </label>
+
+        <div class="photo-section">
+            <h3>Gambar OPR</h3>
+            <p>Pilih sehingga 3 gambar untuk dipaparkan dalam pratonton.</p>
+            <div class="photo-inputs">
+                <label class="photo-upload">📷 Gambar 1<input type="file" accept="image/*" id="image1"></label>
+                <label class="photo-upload">📷 Gambar 2<input type="file" accept="image/*" id="image2"></label>
+                <label class="photo-upload">📷 Gambar 3<input type="file" accept="image/*" id="image3"></label>
+            </div>
+        </div>
+
+        <button class="primary-button" id="previewButton">👁️ Lihat Pratonton OPR</button>
+    </div>
+</main>
+
+<!-- PREVIEW -->
+<main id="previewPage" class="page preview-page">
+    <div class="preview-toolbar">
+        <button class="back-button" id="previewBackButton">←</button>
+        <div><p class="small-title">OPR • PRATONTON</p><h2>Pratonton OPR</h2></div>
+    </div>
+
+    <div class="opr-preview decorated-preview" id="oprPreview">
+        <div class="preview-top">
+            <div>
+                <div class="preview-brand">🐱 TICER CATHY CAT BLOG</div>
+                <h1>ONE PAGE REPORT</h1>
+                <p>OPR • PdPr</p>
+            </div>
+            <div class="preview-badge">2026</div>
+        </div>
+
+        <div class="preview-info">
+            <div><span>MATAPELAJARAN</span><strong id="previewSubject">-</strong></div>
+            <div><span>KELAS</span><strong id="previewClass">-</strong></div>
+            <div><span>TARIKH</span><strong id="previewDate">-</strong></div>
+            <div><span>MASA</span><strong id="previewTime">-</strong></div>
+        </div>
+
+        <div class="preview-section">
+            <h3>📚 AKTIVITI PdPr</h3>
+            <p id="previewActivity">-</p>
+        </div>
+
+        <div class="preview-section">
+            <h3>💭 REFLEKSI PdPr</h3>
+            <p id="previewReflection">-</p>
+        </div>
+
+        <div class="preview-photos">
+            <div class="preview-photo"><img id="previewImage1" alt="Gambar OPR 1"><span>Gambar 1</span></div>
+            <div class="preview-photo"><img id="previewImage2" alt="Gambar OPR 2"><span>Gambar 2</span></div>
+            <div class="preview-photo"><img id="previewImage3" alt="Gambar OPR 3"><span>Gambar 3</span></div>
+        </div>
+
+        <div class="preview-footer">🐾 Teaching • Sharing • Creating • 🐾</div>
+    </div>
+
+    <div class="preview-actions">
+        <button class="secondary-button" id="editOprButton">✏️ Edit OPR</button>
+        <button class="primary-button" id="saveOprButton">💾 Simpan OPR</button>
+        <button class="secondary-button" id="pngButton">🖼️ PNG</button>
+        <button class="secondary-button" id="pdfButton">📄 PDF</button>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-cat">🐾</div>
+    <h3>Ticer Cathy Cat Blog</h3>
+    <p>Teaching • Sharing • Creating</p>
+    <div class="footer-line"></div>
+    <small>© 2026 Ticer Cathy Cat Blog</small>
+</footer>
+
+<div class="message-box" id="messageBox">
+    <div class="message-content">
+        <button class="close-message" onclick="closeMessage()">×</button>
+        <div class="message-icon">🐱</div>
+        <h3 id="messageTitle">Coming Soon</h3>
+        <p id="messageText">Bahagian ini akan dibina tidak lama lagi.</p>
+    </div>
+</div>
+
+<div class="toast" id="toast">Disimpan</div>
+<script>
+const pages = document.querySelectorAll(".page");
+const homePage = document.getElementById("homePage");
+const oprPage = document.getElementById("oprPage");
+const createOprPage = document.getElementById("createOprPage");
+const previewPage = document.getElementById("previewPage");
+const myOprPage = document.getElementById("myOprPage");
+
+const menuButton = document.getElementById("menuButton");
+const mobileMenu = document.getElementById("mobileMenu");
+const exploreButton = document.getElementById("exploreButton");
+const contentSection = document.getElementById("contentSection");
+const messageBox = document.getElementById("messageBox");
+const messageTitle = document.getElementById("messageTitle");
+const messageText = document.getElementById("messageText");
+const toast = document.getElementById("toast");
+
+let currentOprId = null;
+let currentImages = [null,null,null];
+
+function showPage(page){
+    pages.forEach(p=>p.classList.remove("active"));
+    page.classList.add("active");
+    closeMenu();
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){showPage(homePage)}
+function closeMenu(){mobileMenu.classList.remove("show")}
+function showMessage(title){
+    messageTitle.textContent=title||"Coming Soon";
+    messageText.textContent=title?"Fungsi ini akan dibina pada langkah seterusnya.":"Bahagian ini akan dibina tidak lama lagi.";
+    messageBox.classList.add("show");
+}
+function closeMessage(){messageBox.classList.remove("show")}
+function notify(text){
+    toast.textContent=text; toast.classList.add("show");
+    clearTimeout(window.__toastTimer); window.__toastTimer=setTimeout(()=>toast.classList.remove("show"),2200);
+}
+function formatDate(value){
+    if(!value)return "-";
+    const d=new Date(value+"T00:00:00");
+    return d.toLocaleDateString("ms-MY",{day:"2-digit",month:"2-digit",year:"numeric"});
+}
+function readImage(inputId,imageId,n){
+    const input=document.getElementById(inputId), img=document.getElementById(imageId), file=input.files[0];
+    if(!file){img.style.display="none";currentImages[n]=null;return}
+    const reader=new FileReader();
+    reader.onload=e=>{currentImages[n]=e.target.result;img.src=e.target.result;img.style.display="block"};
+    reader.readAsDataURL(file);
+}
+["1","2","3"].forEach((n,i)=>document.getElementById("image"+n).addEventListener("change",()=>readImage("image"+n,"previewImage"+n,i)));
+
+function getFormData(){
+    return {subject:document.getElementById("subjectInput").value.trim(),className:document.getElementById("classInput").value.trim(),date:document.getElementById("dateInput").value,time:document.getElementById("timeInput").value.trim(),activity:document.getElementById("activityInput").value.trim(),reflection:document.getElementById("reflectionInput").value.trim(),images:[...currentImages]};
+}
+function fillPreview(data){
+    document.getElementById("previewSubject").textContent=data.subject||"-";
+    document.getElementById("previewClass").textContent=data.className||"-";
+    document.getElementById("previewDate").textContent=formatDate(data.date);
+    document.getElementById("previewTime").textContent=data.time||"-";
+    document.getElementById("previewActivity").textContent=data.activity||"-";
+    document.getElementById("previewReflection").textContent=data.reflection||"-";
+    currentImages=data.images&&data.images.length?[...data.images]:[null,null,null];
+    currentImages.forEach((src,i)=>{
+        const img=document.getElementById("previewImage"+(i+1));
+        img.src=src||""; img.style.display=src?"block":"none";
+        img.nextElementSibling.style.display=src?"none":"block";
+    });
+}
+function fillForm(data){
+    document.getElementById("subjectInput").value=data.subject||"";
+    document.getElementById("classInput").value=data.className||"";
+    document.getElementById("dateInput").value=data.date||"";
+    document.getElementById("timeInput").value=data.time||"";
+    document.getElementById("activityInput").value=data.activity||"";
+    document.getElementById("reflectionInput").value=data.reflection||"";
+    currentImages=data.images&&data.images.length?[...data.images]:[null,null,null];
+    currentImages.forEach((src,i)=>{const img=document.getElementById("previewImage"+(i+1));img.src=src||"";img.style.display=src?"block":"none"});
+}
+function getSaved(){try{return JSON.parse(localStorage.getItem("ticerCathyOPR")||"[]")}catch(e){return []}}
+function setSaved(items){localStorage.setItem("ticerCathyOPR",JSON.stringify(items))}
+function saveCurrent(){
+    const data=getFormData();
+    if(!data.subject && !data.className && !data.activity){notify("Sila isi maklumat OPR dahulu");return null}
+    const items=getSaved();
+    const id=currentOprId||Date.now().toString();
+    const item={...data,id,updatedAt:new Date().toISOString()};
+    const index=items.findIndex(x=>x.id===id);
+    if(index>=0)items[index]=item;else items.unshift(item);
+    try{setSaved(items)}catch(e){notify("Storan penuh. Cuba buang gambar atau OPR lama.");return null}
+    currentOprId=id; notify(index>=0?"OPR berjaya dikemas kini ✓":"OPR berjaya disimpan ✓");
+    return item;
+}
+function renderSaved(){
+    const list=document.getElementById("savedOprList"), empty=document.getElementById("emptyOprState"), items=getSaved();
+    list.innerHTML=""; empty.style.display=items.length?"none":"block";
+    items.forEach(item=>{
+        const card=document.createElement("div");card.className="saved-opr-card";
+        card.innerHTML=`<div class="saved-opr-icon">📝</div><div class="saved-opr-info"><h3>${esc(item.subject||"Tanpa nama")}</h3><p>${esc(item.className||"-")} · ${esc(formatDate(item.date))}<br>${esc(item.time||"")}</p><span class="saved-badge">OPR PdPr</span></div><div class="saved-opr-actions"><button data-act="view">👁️ Lihat</button><button data-act="edit">✏️ Edit</button><button data-act="png">🖼️ PNG</button><button data-act="pdf">📄 PDF</button><button class="danger" data-act="delete">🗑️</button></div>`;
+        card.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>savedAction(item.id,btn.dataset.act)));
+        list.appendChild(card);
+    });
+}
+function esc(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function savedAction(id,act){
+    const item=getSaved().find(x=>x.id===id); if(!item)return;
+    if(act==="delete"){
+        if(confirm("Padam OPR ini?")){setSaved(getSaved().filter(x=>x.id!==id));renderSaved();notify("OPR telah dipadam");}
+        return;
+    }
+    currentOprId=item.id; fillForm(item); fillPreview(item);
+    if(act==="view")showPage(previewPage);
+    if(act==="edit")showPage(createOprPage);
+    if(act==="png")exportPNG(item);
+    if(act==="pdf"){showPage(previewPage);setTimeout(()=>window.print(),350)}
+}
+function newOpr(){
+    currentOprId=null;currentImages=[null,null,null];
+    ["subjectInput","classInput","dateInput","timeInput","activityInput","reflectionInput"].forEach(id=>document.getElementById(id).value="");
+    [1,2,3].forEach(i=>{document.getElementById("image"+i).value="";document.getElementById("previewImage"+i).style.display="none"});
+    showPage(createOprPage);
+}
+
+document.getElementById("oprCard").addEventListener("click",()=>showPage(oprPage));
+document.getElementById("oprBackButton").addEventListener("click",()=>showPage(homePage));
+document.getElementById("createOprButton").addEventListener("click",newOpr);
+document.getElementById("formBackButton").addEventListener("click",()=>showPage(oprPage));
+document.getElementById("myOprButton").addEventListener("click",()=>{renderSaved();showPage(myOprPage)});
+document.getElementById("myOprBackButton").addEventListener("click",()=>showPage(oprPage));
+document.getElementById("newOprButton").addEventListener("click",newOpr);
+document.getElementById("previewBackButton").addEventListener("click",()=>showPage(createOprPage));
+document.getElementById("editOprButton").addEventListener("click",()=>showPage(createOprPage));
+menuButton.addEventListener("click",()=>mobileMenu.classList.toggle("show"));
+exploreButton.addEventListener("click",()=>contentSection.scrollIntoView({behavior:"smooth"}));
+document.querySelectorAll(".empty-card").forEach(card=>card.addEventListener("click",()=>showMessage()));
+document.querySelectorAll(".mobile-menu button").forEach(btn=>btn.addEventListener("click",closeMenu));
+
+document.getElementById("previewButton").addEventListener("click",()=>{const data=getFormData();fillPreview(data);showPage(previewPage)});
+document.getElementById("saveOprButton").addEventListener("click",()=>{const item=saveCurrent();if(item){renderSaved();}});
+document.getElementById("pngButton").addEventListener("click",()=>exportPNG(getFormData()));
+document.getElementById("pdfButton").addEventListener("click",()=>window.print());
+
+messageBox.addEventListener("click",e=>{if(e.target===messageBox)closeMessage()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMessage();closeMenu()}});
+
+function exportPNG(data){
+    const W=1400,H=1900,scale=1;
+    const canvas=document.createElement("canvas");canvas.width=W*scale;canvas.height=H*scale;
+    const ctx=canvas.getContext("2d");ctx.scale(scale,scale);
+    ctx.fillStyle="#fff8fc";ctx.fillRect(0,0,W,H);
+    ctx.fillStyle="#fff";roundRect(ctx,55,55,W-110,H-110,35);ctx.fill();
+    ctx.strokeStyle="#f0dce8";ctx.lineWidth=5;roundRect(ctx,55,55,W-110,H-110,35);ctx.stroke();
+    ctx.fillStyle="#b1789d";ctx.font="bold 22px Arial";ctx.fillText("🐱 TICER CATHY CAT BLOG",95,120);
+    ctx.fillStyle="#40334d";ctx.font="bold 45px Arial";ctx.fillText("ONE PAGE REPORT",95,180);
+    ctx.fillStyle="#8d7d8f";ctx.font="20px Arial";ctx.fillText("OPR • PdPr",95,215);
+    ctx.fillStyle="#fff0f7";roundRect(ctx,W-240,90,125,55,15);ctx.fill();ctx.fillStyle="#a76489";ctx.font="bold 22px Arial";ctx.fillText("2026",W-210,126);
+    ctx.strokeStyle="#f3e3ed";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(95,250);ctx.lineTo(W-95,250);ctx.stroke();
+    const infos=[["MATAPELAJARAN",data.subject||"-"],["KELAS",data.className||"-"],["TARIKH",formatDate(data.date)],["MASA",data.time||"-"]];
+    infos.forEach((x,i)=>{const x0=95+i*300;ctx.fillStyle="#fff8fc";roundRect(ctx,x0,280,270,95,16);ctx.fill();ctx.fillStyle="#aa8b9f";ctx.font="12px Arial";ctx.fillText(x[0],x0+18,307);ctx.fillStyle="#40334d";ctx.font="bold 18px Arial";wrapCanvas(ctx,x[1],x0+18,335,235,24,2)});
+    drawSection(ctx,"📚 AKTIVITI PdPr",data.activity||"-",95,410,W-190);
+    drawSection(ctx,"💭 REFLEKSI PdPr",data.reflection||"-",95,760,W-190);
+    const imgY=1120,gap=25,iw=(W-190-gap*2)/3,ih=260;
+    (data.images||[]).forEach((src,i)=>{const x=95+i*(iw+gap);ctx.fillStyle="#faf0f6";roundRect(ctx,x,imgY,iw,ih,20);ctx.fill();if(src){const im=new Image();im.onload=()=>{cover(ctx,im,x,imgY,iw,ih);if(i===2)finish()};im.onerror=()=>{if(i===2)finish()};im.src=src}else if(i===2)finish();});
+    if(!(data.images||[]).length)finish();
+    function finish(){ctx.fillStyle="#a48598";ctx.font="16px Arial";ctx.textAlign="center";ctx.fillText("🐾 Teaching • Sharing • Creating • 🐾",W/2,1710);ctx.textAlign="left";const a=document.createElement("a");a.download="OPR-Ticer-Cathy-Cat-"+(data.subject||"Saya").replace(/[^a-z0-9]+/gi,"-")+".png";a.href=canvas.toDataURL("image/png");a.click();notify("PNG sedang disediakan ✓")}
+}
+function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight,maxLines){const words=String(text).split(/\s+/);let line="",lines=[];for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word;if(lines.length===maxLines-1)break}else line=test}if(lines.length<maxLines)lines.push(line);if(words.length>0&&lines.length===maxLines){let last=lines[maxLines-1];while(ctx.measureText(last+"…").width>maxWidth&&last.length)last=last.slice(0,-1);lines[maxLines-1]=last+(words.join(" ").length>lines.join(" ").length?"…":"")}lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight))}
+function drawSection(ctx,title,text,x,y,w){ctx.fillStyle="#fff8fc";roundRect(ctx,x,y,w,280,22);ctx.fill();ctx.fillStyle="#40334d";ctx.font="bold 20px Arial";ctx.fillText(title,x+25,y+40);ctx.fillStyle="#756579";ctx.font="17px Arial";wrapCanvas(ctx,text,x+25,y+75,w-50,28,6)}
+function cover(ctx,img,x,y,w,h){const ratio=Math.max(w/img.width,h/img.height),nw=img.width*ratio,nh=img.height*ratio;ctx.save();roundRect(ctx,x,y,w,h,20);ctx.clip();ctx.drawImage(img,x+(w-nw)/2,y+(h-nh)/2,nw,nh);ctx.restore()}
+
+
+</script>
+</body>
+</html>
